@@ -1,12 +1,8 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
-export const fetchPosts = async () => {
-  // Bad approach
+// it's a function that return function
+export const fetchPosts = () => async (dispatch) => {
   const response = await jsonPlaceholder.get('/posts');
-  // Error: Actions must be plain objects. Use custom middleware for async actions.
 
-  return {
-    type: 'FETCH_POSTS',
-    payload: response,
-  };
+  dispatch({ type: 'FETCH_POSTS', payload: response });
 };
